@@ -7,7 +7,7 @@ print(xiaoming_dict["name"])
 
 # 如果key存在，则修改key对应的value值修
 # 如果key不存在，则新增一堆“键值对（key value）”
-xiaoming_dict["age"] = 19
+xiaoming_dict["age"] = [1,2,2]
 
 # 删除指定的key。（如果key不存在，则报错）
 xiaoming_dict.pop("name")
@@ -18,6 +18,13 @@ print(len(xiaoming_dict))
 temp_dict = {"temp":"dict", "age":22}
 # 合并字典。如果合并的字典中，key存在，则更新key对应的数据
 xiaoming_dict.update(temp_dict)
+
+# 字典里面有列表时，相关的操作
+temp_a = {}
+temp_b = [1,2,3]
+temp_a['temp_b'] = temp_b
+temp_a['temp_b'].append(2222)
+print("打印字典的数据\n", temp_a)
 
 # 清空字典
 # xiaoming_dict.clear()

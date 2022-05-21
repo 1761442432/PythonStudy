@@ -61,3 +61,31 @@ for num in num_list:
     print(num)
 
 print("打印列表：",num_list)
+
+list_for = [6,2,9,3]
+# min() 返回最小的数据
+print("min(test)=   ",min(list_for))
+
+# 将list_for的值赋值给i，然后生成一个二维数组
+# 结果：list_for = [[1, 123, 234, 456], [2, 123, 234, 456], [3, 123, 234, 456]]
+list_for_result = [[i, 23, 1, 20] for i in list_for]
+print("list_for_result=   ",list_for_result)
+
+# list.sort( key=None, reverse=False) ：没有返回值，对列表进行返回。默认升序，reverse=True时，降序；
+# key 是排序的元素。如：key=lambda a:a[1] 是按数组的索引=1的元素为进行排序（a 可以替换为任意字母）(好像这种只适合二维数组，一维数组不适合)
+list_sortTest = [[23, 2, 4, 1], [28, 4,1, 9], [22, 3, 5, 0]]
+list_sortTest.sort(key=lambda a:a[1], reverse=True)
+print("list_for_result.sort()=  ",list_sortTest)
+
+totalcount = [[1,2,3], [2,2,1], [2,34,5]]
+rank_stock_list = [2222, 1111, 5555]
+qq = [rank_stock_list[totalcount[2-i][0]] for i in range(2)]
+print(qq)
+print(totalcount[-1 - 1] [0])
+for i in range(0):
+    print("2222222",i)
+
+print("--------------------------")
+list = [1,2,35,1,2,43]
+1 in list
+print(1111 in list)
