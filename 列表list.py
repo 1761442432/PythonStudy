@@ -89,3 +89,4 @@ print("--------------------------")
 list = [1,2,35,1,2,43]
 1 in list
 print(1111 in list)
+print("计算列表的和：", sum(list))
