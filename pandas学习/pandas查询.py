@@ -1,4 +1,5 @@
 import pandas
+import os
 
 """
 loc     用label（标签，比如key名）定位数据
@@ -6,7 +7,8 @@ iloc    用position（位置，比如第1行）定位数据
 """
 
 # 打开的文件路径
-path = 'D:\我的学习资料\编程学习\PythonStudy\pandas学习\学习成绩.xlsx'
+path = os.path.dirname(__file__)    # 获取当前目录
+path = f'{path}\学习成绩.xlsx'
 df = pandas.read_excel(path)
 # 设定索引：以学号为索引
 df.set_index('学号', inplace=True)
