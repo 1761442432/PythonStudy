@@ -47,13 +47,20 @@ county_rows = lo.select_county_code(conn)
 # 3.2 如果天气表不存在则创建
 lo.create_db_weather(conn)
 # 3.3 遍历每个县/区，爬取未来 7 天的天气预报
-for cr in county_rows:
-    # 根据县编码和县名爬取天气数据
-    results = sc.fetch_city_7day_forecast(
-        county_code=cr["county_code"],
-        county=cr["county"]
-    )
-    # 将爬取结果写入天气表
-    lo.listDict_to_mysql_weather(conn=conn, results=results)
-    # 休眠 0.15 秒，避免请求频率过高被封 IP（给服务器缓冲时间）
-    time.sleep(0.15)
+try:
+    for cr in county_rows:
+        # 根据县编码和县名爬取天气数据
+        results = sc.fetch_city_7day_forecast(
+            county_code=cr["county_code"],
+            county=cr["county"]
+        )
+        # 将爬取结果写入天气表
+        lo.listDict_to_mysql_weather(conn=conn, results=results)
+        # 休眠 0.15 秒，避免请求频率过高被封 IP（给服务器缓冲时间）
+        time.sleep(0.15)
+except KeyboardInterrupt:
+    # 用户按 Ctrl+C 中断，给出友好提示而非打印 Traceback
+    print("\n用户中断（Ctrl+C），正在关闭数据库连接...")
+finally:
+    # 无论正常结束还是异常中断，都确保关闭数据库连接，避免连接泄漏
+    conn.close()
