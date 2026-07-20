@@ -36,6 +36,11 @@ df.describe().round(2)
 
 # 删除含 NaN 的行：不会改变excel文件
 df_clean = df.dropna(inplace=False)  # 当inplace默认False， 当inplace=True 直接修改原数据 df 变量
+'''
+# 直接在原 df 上删掉含有 NaN   (subset=['.SPX', '.VIX'] 指定只关注这两列）
+df.dropna(subset=['.SPX', '.VIX'], inplace=True)  # ['.SPX', '.VIX'] 这两列在 data.cvs文件
+'''
+
 # 填充 NaN，比如用 0 或均值填充
 df_clean = df.fillna(0)  # 当inplace默认False， 当inplace=True 直接修改原数据 df 变量
 # 使用job_id的平均值，填充 job_id 中为 Nan 的值
@@ -55,6 +60,7 @@ result = df[ (df['job_id']>4) & (df['city']=='成都') ]
 result = df[ ['job_name', 'city', 'salary'] ]
 # 用 .loc 按行列标签选 ： 筛选 job_id>4 的行， 只展示这几列：'job_name', 'city', 'salary'
 result = df.loc[ df['job_id']>3, ['job_name', 'city', 'salary']  ]
+result = df.loc[ : 2 ] # 展示索引0-2的数据（3条）
 
 # 记住口诀：分组 → 选列 → 聚合
 # 以 education 进行分组，计算每个组的 size 的平均值
